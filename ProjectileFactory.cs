@@ -37,10 +37,10 @@ namespace RainbowTrails.Patch
             //get protected property Projectile TrailRenderer with no getter
             TrailRenderer trailRenderer = (TrailRenderer)Traverse.Create(__result).Field("trail").GetValue();
 
+            //Patch TrailRenderer
             trailRenderer.startColor = ProjectileFactory_Patch.startColor;
             trailRenderer.endColor = ProjectileFactory_Patch.endColor;
-            //this is a BAD idea
-            //trailRenderer.time = trailRenderer.time * 5;
+            trailRenderer.time = RainbowTrails.trailLength.Value;
             Gradient gradient = new Gradient();
             gradient.SetKeys(ProjectileFactory_Patch.colorKeys, ProjectileFactory_Patch.alphaKeys);
             gradient.mode = GradientMode.Fixed;
