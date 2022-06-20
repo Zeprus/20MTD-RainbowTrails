@@ -35,7 +35,7 @@ namespace RainbowTrails
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
         }
 
-        private void OnDestory()
+        private void OnDestroy()
         {
             Harmony.UnpatchAll();
         }
