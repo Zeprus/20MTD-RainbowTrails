@@ -1,11 +1,10 @@
 using HarmonyLib;
-
 using flanne;
 using UnityEngine;
 
 namespace RainbowTrails.Patch
 {
-    class ProjectileFactory_Patch
+    internal static class GunPatch
     {
         static Color startColor = new Color(148, 0, 211);
         static Color endColor = new Color(255, 0, 0);
@@ -28,23 +27,21 @@ namespace RainbowTrails.Patch
             new GradientAlphaKey(1.0f, 1f),
         };
 
-
-
-        [HarmonyPatch(typeof(ProjectileFactory), "SpawnProjectile")]
-        [HarmonyPostfix]
-        static void ProjectileTrailPostfix(ref Projectile __result)
+        [HarmonyPatch(typeof(Gun), "LoadGun")]
+        [HarmonyPrefix]
+        static bool LoadGunPrefix(Gun __instance, GunData gunToLoad)
         {
-            //get protected property Projectile TrailRenderer with no getter
-            TrailRenderer trailRenderer = (TrailRenderer)Traverse.Create(__result).Field("trail").GetValue();
+            TrailRenderer trailRenderer = gunToLoad.bullet.GetComponent<TrailRenderer>();
 
             //Patch TrailRenderer
-            trailRenderer.startColor = ProjectileFactory_Patch.startColor;
-            trailRenderer.endColor = ProjectileFactory_Patch.endColor;
+            trailRenderer.startColor = GunPatch.startColor;
+            trailRenderer.endColor = GunPatch.endColor;
             trailRenderer.time = RainbowTrails.trailLength.Value;
             Gradient gradient = new Gradient();
-            gradient.SetKeys(ProjectileFactory_Patch.colorKeys, ProjectileFactory_Patch.alphaKeys);
+            gradient.SetKeys(GunPatch.colorKeys, GunPatch.alphaKeys);
             gradient.mode = GradientMode.Fixed;
-            trailRenderer.SetColorGradient(gradient);
+            trailRenderer.colorGradient = gradient;
+            return true;
         }
     }
 }

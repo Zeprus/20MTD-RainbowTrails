@@ -1,6 +1,6 @@
 {
     "name": "RainbowTrails",
-    "version_number": "1.0",
+    "version_number": "1.1.0",
     "website_url": "https://github.com/Zeprus/20MTD-RainbowTrails",
     "description": "Changes the bullet trail to a rainbow color and makes the trail configurable.",
     "dependencies": []

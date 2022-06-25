@@ -62,6 +62,7 @@
 		<ZipDirectory
 			SourceDirectory="$(MSBuildProjectDirectory)\release"
 			DestinationFile="$(MSBuildProjectDirectory)\$(AssemblyName)-v$(Version).zip"
+			Overwrite="true"
 		/>
 	</Target>
 </Project>

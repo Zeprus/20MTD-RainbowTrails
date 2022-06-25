@@ -25,7 +25,7 @@ namespace RainbowTrails
             //Apply method patches through Harmony
             try
             {
-                Harmony.CreateAndPatchAll(typeof(Patch.ProjectileFactory_Patch));
+                Harmony.CreateAndPatchAll(typeof(Patch.GunPatch));
             }
             catch
             {
