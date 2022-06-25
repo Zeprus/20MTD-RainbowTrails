@@ -33,14 +33,17 @@ namespace RainbowTrails.Patch
         {
             TrailRenderer trailRenderer = gunToLoad.bullet.GetComponent<TrailRenderer>();
 
-            //Patch TrailRenderer
-            trailRenderer.startColor = GunPatch.startColor;
-            trailRenderer.endColor = GunPatch.endColor;
-            trailRenderer.time = RainbowTrails.trailLength.Value;
-            Gradient gradient = new Gradient();
-            gradient.SetKeys(GunPatch.colorKeys, GunPatch.alphaKeys);
-            gradient.mode = GradientMode.Fixed;
-            trailRenderer.colorGradient = gradient;
+            if (trailRenderer != null) //flame cannon has no trailRenderer
+            {
+                //Patch TrailRenderer
+                trailRenderer.startColor = GunPatch.startColor;
+                trailRenderer.endColor = GunPatch.endColor;
+                trailRenderer.time = RainbowTrails.trailLength.Value;
+                Gradient gradient = new Gradient();
+                gradient.SetKeys(GunPatch.colorKeys, GunPatch.alphaKeys);
+                gradient.mode = GradientMode.Fixed;
+                trailRenderer.colorGradient = gradient;
+            }
             return true;
         }
     }
