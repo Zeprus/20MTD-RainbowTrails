@@ -7,4 +7,4 @@ A [BepInEx](https://github.com/BepInEx/BepInEx/releases) plugin for [20 Minutes 
 - Rainbow-Colored Bullet Trails
 - Configure the length of the Bullet Trails
 
-![preview-image](icon.png)
+![preview-image](https://github.com/Zeprus/20MTD-RainbowTrails/blob/master/icon.png)
