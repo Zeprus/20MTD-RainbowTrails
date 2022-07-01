@@ -29,7 +29,7 @@ namespace RainbowTrails.Patch
 
         [HarmonyPatch(typeof(Gun), "LoadGun")]
         [HarmonyPrefix]
-        static bool LoadGunPrefix(Gun __instance, GunData gunToLoad)
+        static bool LoadGunPrefix(GunData gunToLoad)
         {
             TrailRenderer trailRenderer = gunToLoad.bullet.GetComponent<TrailRenderer>();
 
